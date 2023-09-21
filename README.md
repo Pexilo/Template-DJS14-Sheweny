@@ -2,7 +2,7 @@
 
 # DiscordJS V14 Sheweny Template
 
-<p><strong>Jumpstart Your Next Discord Bot Project</strong></p>
+![image(3)](https://github.com/Pexilo/Template-DJS14-Sheweny/assets/67436391/ab6f4af6-d6c5-407d-b35e-8ec6085c170a)
 
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg?cacheSeconds=2592000&style=for-the-badge)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
@@ -16,6 +16,7 @@ This is more than just a template. The DiscordJS V14 Sheweny Template aims to pr
 ## 🛠 Installation
 
 [Fork](https://github.com/Pexilo/Template-DJS14-Sheweny/fork) the project.
+
 ```bash
 git clone your-repo
 cd your-repo
@@ -40,13 +41,96 @@ npm install
 
 ## 🧑‍💻 Technical stuff
 
-### Language system
+### LanguageManager Technical Details
 
-todo
+#### Structure
 
-### Utils + mongoose
+```bash
+📦src
+ ┣ 📂commands
+ ┃ ┗ 📜language.command.ts
+ ┣ 📂lang
+ ┃ ┣ 📜en.json
+ ┃ ┗ 📜fr.json
+ ┣ 📂models
+ ┃ ┗ 📜Translations.ts
+ ┣ 📂utils
+ ┗ ┗ 📜language-manager.ts
+```
 
-todo
+- **Translations Interface**: An interface `Translations` is defined to type the translations.
+- **Reading JSON Files**: Language JSON files from `src/lang` are read and parsed during the object's construction.
+- **Translation Retrieval**: Methods like `getTranslation`, `getCommandTranslation`, and others retrieve specific translations based on language and key. Located in `language-manager.ts`.
+
+> When a new `LanguageManager` object is instantiated, it reads all JSON files in `src/lang`, parsing them into its `translations` object.
+
+#### Methods
+
+- `getTranslation(key: string, lang: string)`: Retrieves a general translation.
+- `getCommandTranslation(lang: string)`: Retrieves command-specific translations.
+- `getInterractionTranslation(lang: string)`: Retrieves interaction-specific translations.
+- `getEventTranslation(lang: string)`: Retrieves event-specific translations.
+- `getUtilsTranslation(lang: string)`: Retrieves utility-specific translations.
+- `getAllTranslations(lang: string)`: Retrieves all translations for a specific language.
+
+#### Usage
+
+> Suppose you need to get a translation for the ping command in French. You would do something like:
+
+```javascript
+const langManager = new LanguageManager();
+const pingCommand = langManager.getCommandTranslation("fr").pingCommand;
+```
+
+---
+
+### MongoDB and Mongoose Integration
+
+#### Structure
+
+```bash
+📦src
+ ┣ 📂db
+ ┃ ┣ 📜guild.ts
+ ┃ ┣ 📜index.ts
+ ┃ ┗ 📜user.ts
+ ┣ 📂utils
+ ┗ ┗ 📜shortcuts.ts
+```
+
+- **Database Models**: Stored under the `src/db` directory. There are two main models: `guild.ts` and `user.ts`.
+- **Database Operations**: Methods for interacting with MongoDB are located in `shortcuts.ts`.
+
+#### Mongoose Schemas
+
+- **Guild Schema (`guild.ts`)**: Defines a guild with `id` and `language` fields.
+- **User Schema (`user.ts`)**: Defines a user with `id` and `guilds` fields.
+
+#### Database Operations (`shortcuts.ts`)
+
+- **Creating Records**: `CreateGuild` and `CreateUser` methods are used to create new guild and user records.
+- **Deleting Records**: `DeleteGuild` and `DeleteUser` remove records based on their `id`.
+- **Fetching Records**: `FetchGuild`, `FetchUser`, and `FetchUsersFromGuild` retrieve records.
+- **Updating Records**: `UpdateGuild` and `UpdateUser` modify existing records.
+
+> These MongoDB schemas and operations are designed to be compatible with multiple guilds and users without any issues.
+
+#### Usage
+
+Updating the above example of the language manager to use MongoDB would look like this:
+
+```javascript
+const { guild } = interaction;
+const { guildData, lang } = await FetchAndGetLang(guild!);
+
+const langManager = new LanguageManager();
+const pingCommand = langManager.getCommandTranslation(lang).pingCommand;
+```
+
+Notice the use of `FetchAndGetLang` to retrieve the guild's language and the replacement of `getCommandTranslation("fr")` with `getCommandTranslation(lang)`.
+
+> To create a new translation you have to add it in the `en.json` and `fr.json` files in the `src/lang` folder. Then you have to add the key of the translation it in the `Translations` interface in the `src/models/Translations.ts` file. Use the key to retrieve the translation in your code.  
+> Don't forget to use the corresponding method to retrieve the translation (for commands use `getCommandTranslation`, for events use `getEventTranslation`, etc...)
 
 ## 📝 License
 
