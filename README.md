@@ -62,7 +62,7 @@ npm install
 - **Reading JSON Files**: Language JSON files from `src/lang` are read and parsed during the object's construction.
 - **Translation Retrieval**: Methods like `getTranslation`, `getCommandTranslation`, and others retrieve specific translations based on language and key. Located in `language-manager.ts`.
 
-> When a new `LanguageManager` object is instantiated, it reads all JSON files in `src/lang`, parsing them into its `translations` object.
+When a new `LanguageManager` object is instantiated, it reads all JSON files in `src/lang`, parsing them into its `translations` object.
 
 #### Methods
 
@@ -117,7 +117,7 @@ const pingCommand = langManager.getCommandTranslation("fr").pingCommand;
 
 #### Usage
 
-Updating the above example of the language manager to use MongoDB would look like this:
+> Updating the above example of the language manager to use MongoDB would look like this:
 
 ```javascript
 const { guild } = interaction;
@@ -129,8 +129,8 @@ const pingCommand = langManager.getCommandTranslation(lang).pingCommand;
 
 Notice the use of `FetchAndGetLang` to retrieve the guild's language and the replacement of `getCommandTranslation("fr")` with `getCommandTranslation(lang)`.
 
-> To create a new translation you have to add it in the `en.json` and `fr.json` files in the `src/lang` folder. Then you have to add the key of the translation it in the `Translations` interface in the `src/models/Translations.ts` file. Use the key to retrieve the translation in your code.  
-> Don't forget to use the corresponding method to retrieve the translation (for commands use `getCommandTranslation`, for events use `getEventTranslation`, etc...)
+To create a new translation you have to add it in the `en.json` and `fr.json` files in the `src/lang` folder. Then you have to add the key of the translation it in the `Translations` interface in the `src/models/Translations.ts` file. Use the key to retrieve the translation in your code.  
+Don't forget to use the corresponding method to retrieve the translation (for commands use `getCommandTranslation`, for events use `getEventTranslation`, etc...)
 
 ## 📝 License
 
