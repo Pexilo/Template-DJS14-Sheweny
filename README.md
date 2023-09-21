@@ -158,7 +158,7 @@ Simply give me a ⭐️ to support me! 😄
 
 #### Discord bot:
 
-1. Log in to your Discord account on the [Discord Developer Portal](https://discord.com/developers/applications) website ([Discord Developer Portal](https://discord.com/developers/applications)).
+1. Log in to your Discord account on the [Discord Developer Portal](https://discord.com/developers/applications) website.
 2. Click the "New Application" button to create a new application.
 3. Give your application a name and click _"Create."_
 4. In the left panel, click on _"Bot"_ in the menu.
