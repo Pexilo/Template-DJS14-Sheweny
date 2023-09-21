@@ -15,9 +15,10 @@ This is more than just a template. The DiscordJS V14 Sheweny Template aims to pr
 
 ## 🛠 Installation
 
+[Fork](https://github.com/Pexilo/Template-DJS14-Sheweny/fork) the project.
 ```bash
-git clone https://github.com/Pexilo/Template-DJS14-Sheweny.git
-cd Template-DJS14-Sheweny
+git clone your-repo
+cd your-repo
 npm install
 ```
 
