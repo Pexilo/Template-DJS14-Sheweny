@@ -85,10 +85,10 @@ Simply give me a ⭐️ to support me! 😄
 
 ### 💫 Quick start
 
-- Clone the repo
+- [Fork](https://github.com/Pexilo/Template-DJS14-Sheweny/fork) the repo.
 
 ```
-git clone https://github.com/Pexilo/Template-DJS14-Sheweny
+git clone https://github.com/YOURNAME/Template-DJS14-Sheweny
 ```
 
 ##### 🧾 ENV FILE
