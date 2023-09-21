@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+
+# Packages
+package-lock.json
+
+# dotenv environment variables file
+.env
+
+dist/
+*.sqlite
+.vscode/settings.json
+src/history/*.png
+.env.save

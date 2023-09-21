@@ -1,0 +1,41 @@
+{
+  "commands": {
+    "language": {
+      "response": "✅ La langue du bot est désormais définie sur `Français` 🇫🇷."
+    },
+    "ping": {
+      "title": "Pong !",
+      "fields": [
+        {
+          "name": "Latence du bot"
+        },
+        {
+          "name": "API Discord"
+        }
+      ]
+    }
+  },
+  "events": {
+    "clientMissingPermissions": {
+      "response": "`🚫 J'ai besoin de \\`${missing}\\` permission(s) pour exécuter cette commande.`"
+    },
+    "userMissingPermissions": {
+      "response": "`🚫 J'ai besoin de \\`${missing}\\` permission(s) pour exécuter cette commande.`"
+    }
+  },
+  "interactions": {
+    "templateBtns": {
+      "primary": "Vous avez cliqué sur le bouton **principal** !",
+      "secondary": "Vous avez cliqué sur le bouton **secondaire** !",
+      "success": "Vous avez cliqué sur le bouton **succès** !",
+      "danger": "Vous avez cliqué sur le bouton **danger** !"
+    },
+    "templateModal": {
+      "response": "Modal reçu !"
+    },
+    "templateSltMns": {
+      "first_option": "Vous avez sélectionné la première option !",
+      "second_option": "Vous avez sélectionné la seconde option !"
+    }
+  }
+}

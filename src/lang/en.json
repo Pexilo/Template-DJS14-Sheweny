@@ -1,0 +1,42 @@
+{
+  "commands": {
+    "language": {
+      "response": "✅ The language of the bot is now set to `English` 🇬🇧."
+    },
+    "ping": {
+      "title": "Pong!",
+      "fields": [
+        {
+          "name": "Bot Latency"
+        },
+        {
+          "name": "Discord API"
+        }
+      ]
+    }
+  },
+  "events": {
+    "clientMissingPermissions": {
+      "response": "`🚫 I need \\`${missing}\\` permission(s) to execute this command.`"
+    },
+    "userMissingPermissions": {
+      "response": "`🚫 I need \\`${missing}\\` permission(s) to execute this command.`"
+    }
+  },
+  "interactions": {
+    "templateBtns": {
+      "primary": "You have clicked on **primary** button !",
+      "secondary": "You have clicked on **secondary** button !",
+      "success": "You have clicked on **success** button !",
+      "danger": "You have clicked on **danger** button !"
+    },
+    "templateModal": {
+      "response": "Modal received !"
+    },
+    "templateSltMns": {
+      "first_option": "You have selected **first** option !",
+      "second_option": "You have selected **second** option !"
+    }
+  },
+  "utils": {}
+}
