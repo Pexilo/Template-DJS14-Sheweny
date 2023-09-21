@@ -9,7 +9,7 @@
 
 </div>
 
-## 🚀 About The Template
+## ⚡ About The Template
 
 This is more than just a template. The DiscordJS V14 Sheweny Template aims to provide a strong foundation for Discord bot development. Built with Discord.js v14 and the Sheweny framework, it offers a scalable and feature-rich starting point for both beginners and experienced djs developers. The purpose of this model is to save initial steps time.
 
