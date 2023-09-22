@@ -132,6 +132,9 @@ Notice the use of `FetchAndGetLang` to retrieve the guild's language and the rep
 To create a new translation you have to add it in the `en.json` and `fr.json` files in the `src/lang` folder. Then you have to add the key of the translation it in the `Translations` interface in the `src/models/Translations.ts` file. Use the key to retrieve the translation in your code.  
 Don't forget to use the corresponding method to retrieve the translation (for commands use `getCommandTranslation`, for events use `getEventTranslation`, etc...)
 
+⚠️ Important note, when containing code, make sure to enclose your translated variable within an 'eval' statement.   
+For examples, see `clientMissingPermissions`, `userMissingPermissions` tranlations.
+
 ## 📝 License
 
 [MIT License](https://github.com/Pexilo/Template-DJS14-Sheweny/blob/main/LICENSE)
