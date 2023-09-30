@@ -40,6 +40,10 @@ npm install
 - Event handling
 - Scalable architecture
 - Pre-configured
+- Languages support
+
+> Don't want languages system ?  
+Use [no-multi-languages](https://github.com/Pexilo/Template-DJS14-Sheweny/tree/no-multi-languages) branch.
 
 ## 🌎 Integrated languages
 
