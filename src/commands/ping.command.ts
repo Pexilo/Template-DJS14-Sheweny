@@ -1,5 +1,4 @@
-import LanguageManager from "@utils/language-manager";
-import { Defer, Embed, FetchAndGetLang } from "@utils/shortcuts";
+import { Defer, Embed } from "@utils/shortcuts";
 import type { CommandInteraction } from "discord.js";
 import type { ShewenyClient } from "sheweny";
 import { Command } from "sheweny";
@@ -18,27 +17,21 @@ export class PingCommand extends Command {
   }
 
   async execute(interaction: CommandInteraction) {
-    const { guild } = interaction;
-
     const start = Date.now();
     await Defer(interaction);
     const djsApiLantency = Date.now() - 1000 - start;
 
-    const { lang } = await FetchAndGetLang(guild!);
-    const languageManager = new LanguageManager();
-    const ping = languageManager.getCommandTranslation(lang).ping;
-
     return await interaction.editReply({
       embeds: [
         Embed()
-          .setTitle(`🏓 ${ping.title}`)
+          .setTitle(`🏓 Pong!`)
           .addFields(
             {
-              name: `🤖 ${ping.fields[0].name}`,
+              name: `🤖 Bot Latency`,
               value: `${"```"}${djsApiLantency}ms${"```"}`,
             },
             {
-              name: `📡 ${ping.fields[0].name}`,
+              name: `📡 Discord API`,
               value: `${"```"}${interaction.client.ws.ping + 1}ms${"```"}`,
             }
           ),
