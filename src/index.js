@@ -1,11 +1,12 @@
-import { IntentsBitField, Partials, PermissionFlagsBits } from "discord.js";
-import { ShewenyClient } from "sheweny";
-import config from "./config";
+const {
+  IntentsBitField,
+  Partials,
+  PermissionFlagsBits,
+} = require("discord.js");
+const { ShewenyClient } = require("sheweny");
+const config = require("./config");
 const { mongoose } = require("mongoose");
 
-interface Error {
-  reason?: string;
-}
 const client = new ShewenyClient({
   intents: [
     IntentsBitField.Flags.Guilds,
@@ -50,7 +51,7 @@ mongoose
     family: 4,
   })
   .then(() => console.log("✅ MongoDB"))
-  .catch((err: Error) => {
+  .catch((err) => {
     throw new Error("❌ MongoDB\n" + err.reason);
   });
 

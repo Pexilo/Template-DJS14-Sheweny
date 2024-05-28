@@ -1,7 +1,6 @@
-import * as dotenv from "dotenv";
-dotenv.config();
+require("dotenv").config();
 
-export default {
+module.exports = {
   DISCORD_TOKEN: process.env.DISCORD_TOKEN,
   MONGO_URI: process.env.MONGO_URI,
 };

@@ -1,31 +1,18 @@
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonInteraction,
-  CommandInteraction,
-  EmbedBuilder,
-  Guild,
-  StringSelectMenuInteraction,
-} from "discord.js";
+const { ActionRowBuilder, ButtonBuilder, EmbedBuilder } = require("discord.js");
 const { UserData } = require("../db/index");
 const { GuildData } = require("../db/index");
 
-export function Embed(color = true) {
+function Embed(color = true) {
   const embed = new EmbedBuilder();
   if (color) embed.setColor("#2b2d31");
   return embed;
 }
 
-export function Wait(ms: number) {
+function Wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export async function Defer(
-  interaction:
-    | CommandInteraction
-    | ButtonInteraction
-    | StringSelectMenuInteraction
-) {
+async function Defer(interaction) {
   let bool = true;
   await interaction.deferReply({ ephemeral: true }).catch(() => {
     bool = false;
@@ -34,12 +21,12 @@ export async function Defer(
   return bool;
 }
 
-export function Truncate(str: string, max: number) {
+function Truncate(str, max) {
   return str.length > max ? str.substring(0, max - 1) + "..." : str;
 }
 
-export function CreateButtons(buttons: any[]) {
-  let buttonRow = new ActionRowBuilder<ButtonBuilder>();
+function CreateButtons(buttons) {
+  let buttonRow = new ActionRowBuilder();
   for (const button of buttons) {
     buttonRow.addComponents(
       new ButtonBuilder()
@@ -52,7 +39,7 @@ export function CreateButtons(buttons: any[]) {
   return buttonRow;
 }
 
-export async function CreateGuild(guild: Guild) {
+async function CreateGuild(guild) {
   const createGuild = new GuildData({ id: guild.id });
   createGuild
     .save()
@@ -64,7 +51,7 @@ export async function CreateGuild(guild: Guild) {
   return createGuild;
 }
 
-export async function CreateUser(userId: string, guild: Guild) {
+async function CreateUser(userId, guild) {
   const userData = new UserData({
     id: userId,
     guilds: [guild.id],
@@ -73,7 +60,7 @@ export async function CreateUser(userId: string, guild: Guild) {
   userData.save();
 }
 
-export async function DeleteGuild(guild: Guild) {
+async function DeleteGuild(guild) {
   await GuildData.deleteOne({ id: guild.id }).then(() =>
     console.log(
       `➖– Guild: ${guild.name} - ${guild.id} - ${guild.members.cache.size} users`
@@ -81,17 +68,17 @@ export async function DeleteGuild(guild: Guild) {
   );
 }
 
-export async function DeleteUser(userId: string) {
+async function DeleteUser(userId) {
   await UserData.deleteOne({ id: userId });
 }
 
-export async function FetchGuild(guild: Guild) {
+async function FetchGuild(guild) {
   let data = await GuildData.findOne({ id: guild.id });
   if (!data) data = await CreateGuild(guild);
   return data;
 }
 
-export async function FetchUser(userId: string, guild: Guild) {
+async function FetchUser(userId, guild) {
   const data = await UserData.findOne({ id: userId });
   if (!data) await CreateUser(userId, guild);
   if (data.guilds.indexOf(guild.id) === -1) {
@@ -101,12 +88,12 @@ export async function FetchUser(userId: string, guild: Guild) {
   return data;
 }
 
-export async function FetchUsersFromGuild(guild: Guild) {
+async function FetchUsersFromGuild(guild) {
   const data = await UserData.find({ guilds: guild.id });
   return data;
 }
 
-export async function UpdateGuild(guild: Guild, data: any) {
+async function UpdateGuild(guild, data) {
   const guildData = await FetchGuild(guild);
   if (typeof data !== "object") return;
   for (const key in data) {
@@ -115,7 +102,7 @@ export async function UpdateGuild(guild: Guild, data: any) {
   return guildData.save();
 }
 
-export async function UpdateUser(userId: string, guild: Guild, data: any) {
+async function UpdateUser(userId, guild, data) {
   const userData = await FetchUser(userId, guild);
   if (typeof data !== "object") return;
   for (const key in data) {
@@ -124,8 +111,8 @@ export async function UpdateUser(userId: string, guild: Guild, data: any) {
   return userData.save();
 }
 
-type DateFormat = "DD/MM/YYYY" | "MM/DD/YYYY";
-export function FormatToDcDate(date: Date, format: DateFormat) {
+// Format expected into date parameter: "DD/MM/YYYY" | "MM/DD/YYYY";
+function FormatToDcDate(date, format) {
   const day = ("0" + date.getDate()).slice(-2);
   const month = ("0" + (date.getMonth() + 1)).slice(-2);
   const year = date.getFullYear();
@@ -139,7 +126,26 @@ export function FormatToDcDate(date: Date, format: DateFormat) {
   return DateString;
 }
 
-export async function FetchAndGetLang(guild: Guild) {
+async function FetchAndGetLang(guild) {
   const guildData = await FetchGuild(guild);
   return { guildData, lang: guildData.language };
 }
+
+module.exports = {
+  Embed,
+  Wait,
+  Defer,
+  Truncate,
+  CreateButtons,
+  CreateGuild,
+  CreateUser,
+  DeleteGuild,
+  DeleteUser,
+  FetchGuild,
+  FetchUser,
+  FetchUsersFromGuild,
+  UpdateGuild,
+  UpdateUser,
+  FormatToDcDate,
+  FetchAndGetLang,
+};

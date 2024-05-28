@@ -1,14 +1,12 @@
-import { Defer } from "@utils/shortcuts";
-import { StringSelectMenuInteraction } from "discord.js";
-import type { ShewenyClient } from "sheweny";
-import { SelectMenu } from "sheweny";
+const { Defer } = require("../../utils/shortcuts");
+const { SelectMenu } = require("sheweny");
 
-export class SelectComponent extends SelectMenu {
-  constructor(client: ShewenyClient) {
+class SelectComponent extends SelectMenu {
+  constructor(client) {
     super(client, ["selectId"]);
   }
 
-  async execute(selectMenu: StringSelectMenuInteraction) {
+  async execute(selectMenu) {
     const { values } = selectMenu;
     await Defer(selectMenu);
 
@@ -26,3 +24,5 @@ export class SelectComponent extends SelectMenu {
     }
   }
 }
+
+module.exports = SelectComponent;

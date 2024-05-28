@@ -1,14 +1,12 @@
-import { Defer } from "@utils/shortcuts";
-import type { ButtonInteraction } from "discord.js";
-import type { ShewenyClient } from "sheweny";
-import { Button } from "sheweny";
+const { Defer } = require("../../utils/shortcuts");
+const { Button } = require("sheweny");
 
-export class ButtonComponent extends Button {
-  constructor(client: ShewenyClient) {
+class ButtonComponent extends Button {
+  constructor(client) {
     super(client, ["primaryId", "secondaryId", "successId", "dangerId"]);
   }
 
-  async execute(button: ButtonInteraction) {
+  async execute(button) {
     const { customId } = button;
     await Defer(button);
 
@@ -36,3 +34,5 @@ export class ButtonComponent extends Button {
     }
   }
 }
+
+module.exports = ButtonComponent;

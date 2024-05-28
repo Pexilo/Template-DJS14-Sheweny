@@ -1,10 +1,8 @@
-import { Defer, Embed } from "@utils/shortcuts";
-import type { CommandInteraction } from "discord.js";
-import type { ShewenyClient } from "sheweny";
-import { Command } from "sheweny";
+const { Defer, Embed } = require("../utils/shortcuts");
+const { Command } = require("sheweny");
 
-export class PingCommand extends Command {
-  constructor(client: ShewenyClient) {
+class PingCommand extends Command {
+  constructor(client) {
     super(client, {
       name: "ping",
       description: "🏓 Show the bot latency",
@@ -16,7 +14,7 @@ export class PingCommand extends Command {
     });
   }
 
-  async execute(interaction: CommandInteraction) {
+  async execute(interaction) {
     const start = Date.now();
     await Defer(interaction);
     const djsApiLantency = Date.now() - 1000 - start;
@@ -39,3 +37,5 @@ export class PingCommand extends Command {
     });
   }
 }
+
+module.exports = PingCommand;

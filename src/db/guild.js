@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const guildSchema = new mongoose.Schema({
   id: String,
@@ -8,4 +8,4 @@ const guildSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Guild", guildSchema);
+module.exports = mongoose.model("Guild", guildSchema);
