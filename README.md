@@ -43,7 +43,8 @@ npm install
 - Languages support
 
 > Don't want languages system ?  
-Use [no-multi-languages](https://github.com/Pexilo/Template-DJS14-Sheweny/tree/no-multi-languages) branch.
+Use [no-multi-languages](https://github.com/Pexilo/Template-DJS14-Sheweny/tree/no-multi-languages) branch.  
+Or [no-multi-languages-js](https://github.com/Pexilo/Template-DJS14-Sheweny/tree/no-multi-languages-js) for javascript language.
 
 ## 🌎 Integrated languages
 
